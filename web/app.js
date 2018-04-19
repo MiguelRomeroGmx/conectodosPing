@@ -9,7 +9,7 @@ var config = {
   firebase.initializeApp(config);
 
   var database = firebase.database();
-
+  var hora;
   var mostrarPing = document.getElementById("mostrarPing");
   var datos = document.getElementById("datos");
 
@@ -22,18 +22,20 @@ var config = {
       ping = snaptshot.val();
         mostrarPing.innerHTML = ping;
         console.log(ping);
-        
+        var fecha = new Date();
         if (ping == 1) {
-      datos.innerHTML = "Alto";
-      console.log("alto");
+            hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
+            datos.innerHTML = hora;
       
-  }
-  if (ping == 0) {
-      datos.innerHTML = "Bajo"; 
-      console.log("bajo");
       
-  }
+        }
+        if (ping == 0) {
+            hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
+            datos.innerHTML = hora; 
+      
+      
+        }
 
-  });
+    });
 
 
