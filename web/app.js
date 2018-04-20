@@ -50,16 +50,13 @@ monitor = 0;
     
     function actualizaGrafico() {
             console.log("Actualizar");
-            if (control != 1 ) {
+            if (control > 2 ) {
               var fecha = new Date();
               hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
               addData(myChart, hora, 0);
             }
             
-            
-            
-            
-            control = 0;
+            control++;
             console.log("control", control);
         }
 
@@ -104,13 +101,6 @@ var myChart = new Chart(ctx, {
 });
 
 
-function sinConexion() {
-    var fecha = new Date();
-    hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
-    // datos.innerHTML = hora;
-    addData(myChart, hora, 0);
-}
-
 
 function addData(chart, label, data) {
     puntos++;
@@ -125,7 +115,7 @@ function addData(chart, label, data) {
             dataset.data.splice(0, 1);
         }
     });
-    if (puntos > 51) {
+    if (puntos > 50) {
         puntos--;
     }
     chart.update();
@@ -135,25 +125,3 @@ function addData(chart, label, data) {
 
 
 
-// function moveChart(chart, label, data) {
-//     chart.data.labels.push(label); // add new label at end
-//     chart.data.labels.splice(0, 1); // remove first label
-
-//     chart.data.datsets.forEach((dataset) => {
-//         dataset.data.push(data[puntos]); // add new data at end
-//         dataset.data.splice(0, 1); // remove first data point
-//     });
-
-//     chart.update();
-// }
-
-
-
-
-// function removeData(chart, label, data) {
-//     chart.data.labels.pop();
-//     chart.data.datasets.forEach((dataset) => {
-//         dataset.data.pop();
-//     });
-//     chart.update();
-// }
