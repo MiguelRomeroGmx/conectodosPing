@@ -18,7 +18,8 @@ var config = {
   var ping = firebase.database().ref().child("ping");
 
 
-
+puntos = 0;
+maxPuntos = 10;
 
   ping.on("value", function (snaptshot) {
       ping = snaptshot.val();
@@ -29,27 +30,31 @@ var config = {
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
             // firebase.database().ref(hora).set(hora);
             datos.innerHTML = hora;
-      
+            addData(myChart, hora, ping);
       
         }
         if (ping == 0) {
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
             // firebase.database().ref(hora).set(hora);
             datos.innerHTML = hora; 
+            addData(myChart, hora, ping);
 
         }
 
 
+    });
 
-var ctx = document.getElementById("myChart").getContext('2d');
+   
+    
+    var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ["13:56:45", "13:56:46", "13:56:47", "13:56:48", "13:56:49", "13:56:50"],
+        labels: [],
         datasets: [{
             label: 'Ping Conectodos',
             // data: [1, 1, 1, 0, 1, 0],
-            data: [ping],
+            data: [],
             backgroundColor: [
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -81,17 +86,58 @@ var ctx = document.getElementById("myChart").getContext('2d');
 });
 
 
+    
 
 
+function addData(chart, label, data) {
+    
+    console.log(puntos);
+    // if(puntos>maxPuntos){
+    // moveChart(myChart, hora, ping);
+      
+    //     puntos--;
+    // } else {
+    chart.data.labels.push(label);
+    if (puntos>30) {
+        chart.data.labels.splice(0, 1);
+    }
+    
 
-
-
-
-
-
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+        if (puntos>30) {
+             dataset.data.splice(0, 1);
+        }
+       
     });
+    puntos++;
+        
+    chart.update();
+    // }
+}
 
-    
 
 
-    
+
+// function moveChart(chart, label, data) {
+//     chart.data.labels.push(label); // add new label at end
+//     chart.data.labels.splice(0, 1); // remove first label
+
+//     chart.data.datsets.forEach((dataset) => {
+//         dataset.data.push(data[puntos]); // add new data at end
+//         dataset.data.splice(0, 1); // remove first data point
+//     });
+
+//     chart.update();
+// }
+
+
+
+
+// function removeData(chart, label, data) {
+//     chart.data.labels.pop();
+//     chart.data.datasets.forEach((dataset) => {
+//         dataset.data.pop();
+//     });
+//     chart.update();
+// }
