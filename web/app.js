@@ -29,17 +29,15 @@ monitor = 0;
         control = 1;
         console.log("firebase");
         ping = snaptshot.val();
-        mostrarPing.innerHTML = ping;
+        mostrarPing.innerHTML = "En Línea";
         console.log(ping);
         var fecha = new Date();
         if (ping == 1) {
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
-            datos.innerHTML = hora;
             addData(myChart, hora, 1);
         }
         if (ping == 0) {
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
-            datos.innerHTML = hora; 
             addData(myChart, hora, 1);
         }
         console.log("control",control);
@@ -51,11 +49,13 @@ monitor = 0;
     function actualizaGrafico() {
             console.log("Actualizar");
             if (control > 2 ) {
+                mostrarPing.innerHTML = "Sin Conexión";
               var fecha = new Date();
               hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
               addData(myChart, hora, 0);
+              datos.innerHTML = hora;
             }
-            
+            datos.innerHTML = hora;
             control++;
             console.log("control", control);
         }
@@ -90,6 +90,10 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+        title: {
+            display: true,
+            text: 'Antena 1 - Fibra Óptica Paraíso'
+        },
         scales: {
             yAxes: [{
                 ticks: {
