@@ -26,9 +26,9 @@ void setup()
 void loop()
 {
 	Firebase.setInt("ping", 1);
-	delay(1000);
+	delay(500);
 	Firebase.setInt("ping", 0);
-	delay(1000);
+	delay(500);
 
 
 }

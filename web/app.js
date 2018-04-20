@@ -11,44 +11,61 @@ var config = {
   var database = firebase.database();
   var hora;
   var puntos;
+  var control;
   var maxPuntos;
   var mostrarPing = document.getElementById("mostrarPing");
   var datos = document.getElementById("datos");
   var monitor;
   var ping = firebase.database().ref().child("ping");
 
-
+// actualizaGrafico();
 puntos = 0;
 maxPuntos = 10;
+monitor = 0;
+  
+
 
   ping.on("value", function (snaptshot) {
-        
+        control = 1;
         console.log("firebase");
-          
         ping = snaptshot.val();
         mostrarPing.innerHTML = ping;
         console.log(ping);
         var fecha = new Date();
         if (ping == 1) {
-           
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
             datos.innerHTML = hora;
-            addData(myChart, hora, ping);
+            addData(myChart, hora, 1);
         }
         if (ping == 0) {
-            
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
             datos.innerHTML = hora; 
-            addData(myChart, hora, ping);
+            addData(myChart, hora, 1);
         }
+        console.log("control",control);
+        
     });
 
-
-
-
+  
     
-    var ctx = document.getElementById("myChart").getContext('2d');
-    var myChart = new Chart(ctx, {
+    function actualizaGrafico() {
+            console.log("Actualizar");
+            if (control != 1 ) {
+              var fecha = new Date();
+              hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
+              addData(myChart, hora, 0);
+            }
+            
+            
+            
+            
+            control = 0;
+            console.log("control", control);
+        }
+
+
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: [],
@@ -79,7 +96,7 @@ maxPuntos = 10;
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    beginAtZero: true
                 }
             }]
         }
@@ -90,8 +107,8 @@ maxPuntos = 10;
 function sinConexion() {
     var fecha = new Date();
     hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
-            // datos.innerHTML = hora;
-            addData(myChart, hora, 0);
+    // datos.innerHTML = hora;
+    addData(myChart, hora, 0);
 }
 
 
@@ -99,20 +116,21 @@ function addData(chart, label, data) {
     puntos++;
     console.log(puntos);
     chart.data.labels.push(label);
-    if (puntos>30) {
+    if (puntos > 50) {
         chart.data.labels.splice(0, 1);
     }
     chart.data.datasets.forEach((dataset) => {
         dataset.data.push(data);
-        if (puntos>30) {
-             dataset.data.splice(0, 1);
-        }  
+        if (puntos > 50) {
+            dataset.data.splice(0, 1);
+        }
     });
-    if (puntos>31) {
-        puntos--;   
+    if (puntos > 51) {
+        puntos--;
     }
     chart.update();
 }
+
 
 
 
