@@ -40,11 +40,8 @@ maxPuntos = 10;
             addData(myChart, hora, ping);
 
         }
-
-
     });
 
-   
     
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
@@ -86,34 +83,23 @@ maxPuntos = 10;
 });
 
 
-    
-
-
 function addData(chart, label, data) {
-    
+    puntos++;
     console.log(puntos);
-    // if(puntos>maxPuntos){
-    // moveChart(myChart, hora, ping);
-      
-    //     puntos--;
-    // } else {
     chart.data.labels.push(label);
     if (puntos>30) {
         chart.data.labels.splice(0, 1);
     }
-    
-
     chart.data.datasets.forEach((dataset) => {
         dataset.data.push(data);
         if (puntos>30) {
              dataset.data.splice(0, 1);
-        }
-       
+        }  
     });
-    puntos++;
-        
+    if (puntos>31) {
+        puntos--;   
+    }
     chart.update();
-    // }
 }
 
 
