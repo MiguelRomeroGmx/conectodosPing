@@ -14,7 +14,7 @@ var config = {
   var maxPuntos;
   var mostrarPing = document.getElementById("mostrarPing");
   var datos = document.getElementById("datos");
-
+  var monitor;
   var ping = firebase.database().ref().child("ping");
 
 
@@ -22,25 +22,29 @@ puntos = 0;
 maxPuntos = 10;
 
   ping.on("value", function (snaptshot) {
-      ping = snaptshot.val();
+        
+        console.log("firebase");
+          
+        ping = snaptshot.val();
         mostrarPing.innerHTML = ping;
         console.log(ping);
         var fecha = new Date();
         if (ping == 1) {
+           
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
-            // firebase.database().ref(hora).set(hora);
             datos.innerHTML = hora;
             addData(myChart, hora, ping);
-      
         }
         if (ping == 0) {
+            
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
-            // firebase.database().ref(hora).set(hora);
             datos.innerHTML = hora; 
             addData(myChart, hora, ping);
-
         }
     });
+
+
+
 
     
     var ctx = document.getElementById("myChart").getContext('2d');
@@ -53,7 +57,7 @@ maxPuntos = 10;
             // data: [1, 1, 1, 0, 1, 0],
             data: [],
             backgroundColor: [
-                'rgba(255, 206, 86, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
@@ -81,6 +85,14 @@ maxPuntos = 10;
         }
     }
 });
+
+
+function sinConexion() {
+    var fecha = new Date();
+    hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
+            // datos.innerHTML = hora;
+            addData(myChart, hora, 0);
+}
 
 
 function addData(chart, label, data) {
