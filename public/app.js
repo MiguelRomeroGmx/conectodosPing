@@ -10,11 +10,14 @@ var config = {
 
   var database = firebase.database();
   var hora;
+  var ultDesconexion = document.getElementById("ultDesconexion");
+   var ultDesconexion2 = document.getElementById("ultDesconexion2");
   var puntos;
   var puntos2;
   var control;
   var contrl2;
   var maxPuntos;
+
   var mostrarPing = document.getElementById("mostrarPing");
   var datos = document.getElementById("datos");
   var mostrarPing2 = document.getElementById("mostrarPing2");
@@ -76,6 +79,7 @@ monitor = 0;
                 mostrarPing.innerHTML = "Sin Conexión";
               var fecha = new Date();
               hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
+              ultDesconexion.innerHTML = hora;
               addData(myChart, hora, 0);
               datos.innerHTML = hora;
             }
@@ -83,6 +87,7 @@ monitor = 0;
                 mostrarPing2.innerHTML = "Sin Conexión";
                 var fecha = new Date();
                 hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
+                ultDesconexion2.innerHTML = hora;
                 addData2(myChart2, hora, 0);
                 datos2.innerHTML = hora;
             }
