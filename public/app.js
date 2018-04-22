@@ -80,6 +80,8 @@ monitor = 0;
               var fecha = new Date();
               hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
               ultDesconexion.innerHTML = hora;
+              console.log(hora);
+              
               addData(myChart, hora, 0);
               datos.innerHTML = hora;
             }
