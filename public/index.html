@@ -12,7 +12,11 @@
     <title>Ping Conectodos</title>
 </head>
 <body onLoad="setInterval('actualizaGrafico()', 1000);">
-<h1>Conectodos Ping</h1>
+<!-- <h1>Conectodos Ping</h1> -->
+
+<div class="text-center">
+<img  src="conectodos.png" class="img-fluid logo" alt="Responsive image">
+</div>
 
 <section>
 <div class="container">
@@ -45,16 +49,29 @@
 </section>
 
 <section>
-    <div style="float: right">
-        <h6>Estatus Antena</h6>
-        <label class="form-control" id="mostrarPing2">Estado</label>
-        <h6>Hora Actual</h6>
-        <label class="form-control" id="datos2">Ping</label>
-        <h6>Última desconexión</h6>
-        <label class="form-control" id="ultDesconexion2">Desconexion</label>
-        <h6>Reconexión</h6>
-        <label class="form-control" id="reconexion2">Desconexion</label>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h6>Estatus Antena</h6>
+            <label class="form-control" id="mostrarPing2">Estado</label>
+        </div>
+        <div class="col-6">
+            <h6>Hora Actual</h6>
+            <label class="form-control" id="datos2">Ping</label>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-6">
+            <h6>Última desconexión</h6>
+            <label class="form-control" id="ultDesconexion2">Desconexion</label>
+        </div>
+        <div class="col-6">
+            <h6>Reconexión</h6>
+            <label class="form-control" id="reconexion2">Desconexion</label>
+        </div>
+    </div>
+</div>
+
 
     <div style="float: center">
         <canvas id="myChart2" width="1400" height="250"></canvas>
