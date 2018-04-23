@@ -17,6 +17,7 @@ var config = {
   var control;
   var contrl2;
   var maxPuntos;
+  var controlUltDesconexion;
 
   var mostrarPing = document.getElementById("mostrarPing");
   var datos = document.getElementById("datos");
@@ -52,6 +53,7 @@ monitor = 0;
 
     ping2.on("value", function (snaptshot) {
         control2 = 1;
+        controlUltDesconexion = 0;
         console.log("firebase");
         ping2 = snaptshot.val();
         mostrarPing2.innerHTML = "En Línea";
@@ -71,13 +73,18 @@ monitor = 0;
     
     function actualizaGrafico() {
             console.log("Actualizar");
-            if (control > 2 ) {
-                mostrarPing.innerHTML = "Sin Conexión";
+            if (control > 2 ) { 
+
+            if (controlUltDesconexion == 0) {
+                  ultDesconexion.innerHTML = hora;
+                  controlUltDesconexion = 1;
+              }
+              mostrarPing.innerHTML = "Sin Conexión";
               var fecha = new Date();
               hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
-              ultDesconexion.innerHTML = hora;
-              console.log(hora);
+             
               
+              console.log(hora);
               addData(myChart, hora, 0);
               datos.innerHTML = hora;
             }
