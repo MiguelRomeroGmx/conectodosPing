@@ -25,13 +25,12 @@ var config = {
   var monitor;
   var ping = firebase.database().ref().child("ping");
   var ping2 = firebase.database().ref().child("ping2");
-// actualizaGrafico();
+
 puntos = 0;
 puntos2 = 0;
 maxPuntos = 10;
 monitor = 0;
   
-
 
   ping.on("value", function (snaptshot) {
         control = 1;
@@ -49,7 +48,6 @@ monitor = 0;
             addData(myChart, hora, 1);
         }
         console.log("control",control);
-        
     });
 
     ping2.on("value", function (snaptshot) {
@@ -68,10 +66,8 @@ monitor = 0;
             addData2(myChart2, hora, 1);
         }
         console.log("control2", control2);
-
     });
 
-  
     
     function actualizaGrafico() {
             console.log("Actualizar");
@@ -145,7 +141,6 @@ var myChart = new Chart(ctx, {
 });
 
 
-
 var ctx = document.getElementById("myChart2").getContext('2d');
 var myChart2 = new Chart(ctx, {
     type: 'line',
@@ -188,8 +183,6 @@ var myChart2 = new Chart(ctx, {
         }
     }
 });
-
-
 
 
 function addData(chart, label, data) {
