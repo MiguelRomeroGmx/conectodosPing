@@ -11,7 +11,7 @@ var config = {
   var database = firebase.database();
   var hora;
   var ultDesconexion = document.getElementById("ultDesconexion");
-   var ultDesconexion2 = document.getElementById("ultDesconexion2");
+    var ultDesconexion2 = document.getElementById("ultDesconexion2");
   var puntos;
   var puntos2;
   var control;
