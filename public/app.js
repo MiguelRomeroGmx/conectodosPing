@@ -12,6 +12,7 @@ var config = {
   var hora;
   var ultDesconexion = document.getElementById("ultDesconexion");
     var ultDesconexion2 = document.getElementById("ultDesconexion2");
+    var reconexion = document.getElementById("reconexion");
   var puntos;
   var puntos2;
   var control;
@@ -35,6 +36,11 @@ monitor = 0;
 
   ping.on("value", function (snaptshot) {
         control = 1;
+        var fecha = new Date();
+        if (controlUltDesconexion == 1){
+                hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
+                reconexion.innerHTML = hora;
+            }
         controlUltDesconexion = 0;
         console.log("firebase");
         ping = snaptshot.val();
@@ -43,6 +49,7 @@ monitor = 0;
         var fecha = new Date();
         if (ping == 1) {
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
+            
             addData(myChart, hora, 1);
         }
         if (ping == 0) {
