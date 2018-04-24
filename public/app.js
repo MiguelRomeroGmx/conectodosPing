@@ -13,6 +13,7 @@ var config = {
   var ultDesconexion = document.getElementById("ultDesconexion");
     var ultDesconexion2 = document.getElementById("ultDesconexion2");
     var reconexion = document.getElementById("reconexion");
+    var reconexion2 = document.getElementById("reconexion2");
   var puntos;
   var puntos2;
   var control;
@@ -60,13 +61,18 @@ monitor = 0;
     });
 
     ping2.on("value", function (snaptshot) {
+        var fecha = new Date();
         control2 = 1;
+        if (controlUltDesconexion2 == 1){
+                hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
+                reconexion2.innerHTML = hora;
+            }
         controlUltDesconexion2 = 0;
         console.log("firebase");
         ping2 = snaptshot.val();
         mostrarPing2.innerHTML = "En Línea";
         console.log(ping);
-        var fecha = new Date();
+        
         if (ping2 == 1) {
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
             addData2(myChart2, hora, 1);
