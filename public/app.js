@@ -26,6 +26,7 @@ var config = {
   var mostrarPing2 = document.getElementById("mostrarPing2");
   var datos2 = document.getElementById("datos2");
   var monitor;
+  var dia;
   var ping = firebase.database().ref().child("torre_1/ping");
   var ping2 = firebase.database().ref().child("torre_2/ping");
 
@@ -40,13 +41,14 @@ ciclo = 0;
         if (controlUltDesconexion == 1){
                 hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
                 reconexion.innerHTML = hora;
-                firebase.database().ref("torre_1/reconexion").set(hora);
+                dia = "29-04-2018";
+                firebase.database().ref("torre_1/reconexion/" + dia + "/" + hora ).set(hora);
             }
         controlUltDesconexion = 0;
-        console.log("firebase");
+        // console.log("firebase");
         ping = snaptshot.val();
         mostrarPing.innerHTML = "En Línea";
-        console.log(ping);
+        // console.log(ping);
         var fecha = new Date();
         if (ping == 1) {
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
@@ -56,7 +58,7 @@ ciclo = 0;
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
             addData(myChart, hora, 1);
         }
-        console.log("control",control);
+        // console.log("control",control);
     });
 
     ping2.on("value", function (snaptshot) {
@@ -68,10 +70,10 @@ ciclo = 0;
                 
             }
         controlUltDesconexion2 = 0;
-        console.log("firebase");
+        // console.log("firebase");
         ping2 = snaptshot.val();
         mostrarPing2.innerHTML = "En Línea";
-        console.log(ping);
+        // console.log(ping);
         
         if (ping2 == 1) {
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
@@ -81,23 +83,24 @@ ciclo = 0;
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
             addData2(myChart2, hora, 1);
         }
-        console.log("control2", control2);
+        // console.log("control2", control2);
     });
 
     
     function actualizaGrafico() {
-            console.log("Actualizar");
+            // console.log("Actualizar");
             if (control > 3) { 
 
             if (controlUltDesconexion == 0) {
                   ultDesconexion.innerHTML = hora;
                   controlUltDesconexion = 1;
-                  firebase.database().ref("torre_1/desconexion").set(hora);
+                  dia = "29-04-2018";
+                  firebase.database().ref("torre_1/desconexion/" + dia + "/" + hora).set(hora);
               }
               mostrarPing.innerHTML = "Sin Conexión";
               var fecha = new Date();
               hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
-              console.log(hora);
+            //   console.log(hora);
               addData(myChart, hora, 0);
               datos.innerHTML = hora;
             }
@@ -117,7 +120,7 @@ ciclo = 0;
             datos2.innerHTML = hora;
             control++;
             control2++;
-            console.log("control", control);
+            // console.log("control", control);
         }
 
 
@@ -211,7 +214,7 @@ var myChart2 = new Chart(ctx, {
 
 function addData(chart, label, data) {
     puntos++;
-    console.log(puntos);
+    // console.log(puntos);
     chart.data.labels.push(label);
     if (puntos > 50) {
         chart.data.labels.splice(0, 1);
@@ -231,7 +234,7 @@ function addData(chart, label, data) {
 
 function addData2(chart, label, data) {
     puntos2++;
-    console.log(puntos2);
+    // console.log(puntos2);
     chart.data.labels.push(label);
     if (puntos2 > 50) {
         chart.data.labels.splice(0, 1);
