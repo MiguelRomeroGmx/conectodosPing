@@ -44,8 +44,15 @@ ciclo = 0;
         if (controlUltDesconexion == 1){
                 hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
                 reconexion.innerHTML = hora;
-                dia = "29-04-2018";
+                // dia = "29-04-2018";
                 numReconexion++;
+                var mes = fecha.getMonth() + 1;
+                if (mes < 10) {
+                    mes = "0" + mes;
+                }
+                dia = fecha.getDate() + "-" + mes + "-" + fecha.getFullYear();
+                console.log(dia);
+                
                 firebase.database().ref("torre_1/reconexion/" + dia + "/" + numReconexion ).set(hora);
             }
         controlUltDesconexion = 0;
