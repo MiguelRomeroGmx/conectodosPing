@@ -18,7 +18,7 @@ var config = {
   var puntos2;
   var control;
   var control2;
-  var maxPuntos;
+  var ciclo;
   var controlUltDesconexion;
   var controlUltDesconexion2;
   var mostrarPing = document.getElementById("mostrarPing");
@@ -31,9 +31,8 @@ var config = {
 
 puntos = 0;
 puntos2 = 0;
-maxPuntos = 10;
 monitor = 0;
-  
+ciclo = 0;  
 
   ping.on("value", function (snaptshot) {
         control = 1;
@@ -50,10 +49,11 @@ monitor = 0;
         var fecha = new Date();
         if (ping == 1) {
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
-            
             addData(myChart, hora, 1);
         }
         if (ping == 0) {
+
+
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
             addData(myChart, hora, 1);
         }
@@ -87,7 +87,7 @@ monitor = 0;
     
     function actualizaGrafico() {
             console.log("Actualizar");
-            if (control > 2 ) { 
+            if (control > 3 ) { 
 
             if (controlUltDesconexion == 0) {
                   ultDesconexion.innerHTML = hora;
