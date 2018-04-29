@@ -40,6 +40,7 @@ ciclo = 0;
         if (controlUltDesconexion == 1){
                 hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
                 reconexion.innerHTML = hora;
+                firebase.database().ref("reconexion").set(hora);
             }
         controlUltDesconexion = 0;
         console.log("firebase");
@@ -52,8 +53,6 @@ ciclo = 0;
             addData(myChart, hora, 1);
         }
         if (ping == 0) {
-
-
             hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
             addData(myChart, hora, 1);
         }
@@ -66,6 +65,7 @@ ciclo = 0;
         if (controlUltDesconexion2 == 1){
                 hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
                 reconexion2.innerHTML = hora;
+                
             }
         controlUltDesconexion2 = 0;
         console.log("firebase");
@@ -87,17 +87,16 @@ ciclo = 0;
     
     function actualizaGrafico() {
             console.log("Actualizar");
-            if (control > 3 ) { 
+            if (control > 3) { 
 
             if (controlUltDesconexion == 0) {
                   ultDesconexion.innerHTML = hora;
                   controlUltDesconexion = 1;
+                  firebase.database().ref("desconexion").set(hora);
               }
               mostrarPing.innerHTML = "Sin Conexión";
               var fecha = new Date();
               hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
-             
-              
               console.log(hora);
               addData(myChart, hora, 0);
               datos.innerHTML = hora;
