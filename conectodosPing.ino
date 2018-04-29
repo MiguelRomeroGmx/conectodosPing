@@ -25,11 +25,11 @@ void setup()
 
 void loop()
 {
-	Firebase.setInt("ping", 1);
-	Firebase.setInt("ping2", 1);
+	Firebase.setInt("torre_1/ping", 1);
+	Firebase.setInt("torre_2/ping", 1);
 	delay(500);
-	Firebase.setInt("ping", 0);
-	Firebase.setInt("ping2", 0);
+	Firebase.setInt("torre_1/ping", 0);
+	Firebase.setInt("torre_2/ping", 0);
 	delay(500);
 
 
