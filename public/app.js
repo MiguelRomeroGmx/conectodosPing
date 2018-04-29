@@ -18,6 +18,8 @@ var config = {
   var puntos2;
   var control;
   var control2;
+  var numDesconexion;
+  var numReconexion;
   var ciclo;
   var controlUltDesconexion;
   var controlUltDesconexion2;
@@ -29,7 +31,8 @@ var config = {
   var dia;
   var ping = firebase.database().ref().child("torre_1/ping");
   var ping2 = firebase.database().ref().child("torre_2/ping");
-
+numDesconexion = 0;
+numReconexion = 0;
 puntos = 0;
 puntos2 = 0;
 monitor = 0;
@@ -42,7 +45,8 @@ ciclo = 0;
                 hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
                 reconexion.innerHTML = hora;
                 dia = "29-04-2018";
-                firebase.database().ref("torre_1/reconexion/" + dia + "/" + hora ).set(hora);
+                numReconexion++;
+                firebase.database().ref("torre_1/reconexion/" + dia + "/" + numReconexion ).set(hora);
             }
         controlUltDesconexion = 0;
         // console.log("firebase");
@@ -95,7 +99,8 @@ ciclo = 0;
                   ultDesconexion.innerHTML = hora;
                   controlUltDesconexion = 1;
                   dia = "29-04-2018";
-                  firebase.database().ref("torre_1/desconexion/" + dia + "/" + hora).set(hora);
+                  numDesconexion++;
+                  firebase.database().ref("torre_1/desconexion/" + dia + "/" + numDesconexion).set(hora);
               }
               mostrarPing.innerHTML = "Sin Conexión";
               var fecha = new Date();
