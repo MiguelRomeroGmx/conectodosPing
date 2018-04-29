@@ -20,6 +20,8 @@ var config = {
   var control2;
   var numDesconexion;
   var numReconexion;
+  var numDesconexion2;
+  var numReconexion2;
   var ciclo;
   var controlUltDesconexion;
   var controlUltDesconexion2;
@@ -41,90 +43,156 @@ ciclo = 0;
   ping.on("value", function (snaptshot) {
         control = 1;
         var fecha = new Date();
+        var horas = fecha.getHours();
+        if (horas < 10) {
+            horas = "0" + horas;
+        }
+        var minutos = fecha.getMinutes();
+        if (minutos < 10) {
+            minutos = "0" + minutos;
+        }
+        var segundos = fecha.getSeconds();
+        if (segundos <10) {
+            segundos = "0" + segundos;
+        }
+        hora = horas + ":" + minutos + ":" + segundos;
         if (controlUltDesconexion == 1){
-                hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
                 reconexion.innerHTML = hora;
-                // dia = "29-04-2018";
                 numReconexion++;
                 var mes = fecha.getMonth() + 1;
                 if (mes < 10) {
                     mes = "0" + mes;
                 }
-                dia = fecha.getDate() + "-" + mes + "-" + fecha.getFullYear();
+                var dias = fecha.getDate();
+                if (dias <10) {
+                    dias = "0" + dias;
+                }
+                dia = dias + "-" + mes + "-" + fecha.getFullYear();
                 console.log(dia);
-                
                 firebase.database().ref("torre_1/reconexion/" + dia + "/" + numReconexion ).set(hora);
             }
         controlUltDesconexion = 0;
-        // console.log("firebase");
         ping = snaptshot.val();
         mostrarPing.innerHTML = "En Línea";
-        // console.log(ping);
-        var fecha = new Date();
         if (ping == 1) {
-            hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
             addData(myChart, hora, 1);
         }
         if (ping == 0) {
-            hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
             addData(myChart, hora, 1);
         }
-        // console.log("control",control);
     });
 
     ping2.on("value", function (snaptshot) {
-        var fecha = new Date();
         control2 = 1;
+        var fecha = new Date();
+        var horas = fecha.getHours();
+        if (horas < 10) {
+            horas = "0" + horas;
+        }
+        var minutos = fecha.getMinutes();
+        if (minutos < 10) {
+            minutos = "0" + minutos;
+        }
+        var segundos = fecha.getSeconds();
+        if (segundos < 10) {
+            segundos = "0" + segundos;
+        }
+        hora = horas + ":" + minutos + ":" + segundos;
         if (controlUltDesconexion2 == 1){
-                hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
                 reconexion2.innerHTML = hora;
-                
+                numReconexion2++;
+                var mes = fecha.getMonth() + 1;
+                if (mes < 10) {
+                    mes = "0" + mes;
+                }
+                var dias = fecha.getDate();
+                if (dias < 10) {
+                    dias = "0" + dias;
+                }
+                dia = dias + "-" + mes + "-" + fecha.getFullYear();
+                console.log(dia);
+                firebase.database().ref("torre_2/reconexion/" + dia + "/" + numReconexion).set(hora);
             }
         controlUltDesconexion2 = 0;
-        // console.log("firebase");
         ping2 = snaptshot.val();
         mostrarPing2.innerHTML = "En Línea";
-        // console.log(ping);
-        
         if (ping2 == 1) {
-            hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
             addData2(myChart2, hora, 1);
         }
         if (ping2 == 0) {
-            hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
             addData2(myChart2, hora, 1);
         }
-        // console.log("control2", control2);
     });
 
     
     function actualizaGrafico() {
-            // console.log("Actualizar");
             if (control > 3) { 
-
-            if (controlUltDesconexion == 0) {
-                  ultDesconexion.innerHTML = hora;
-                  controlUltDesconexion = 1;
-                  dia = "29-04-2018";
-                  numDesconexion++;
-                  firebase.database().ref("torre_1/desconexion/" + dia + "/" + numDesconexion).set(hora);
-              }
-              mostrarPing.innerHTML = "Sin Conexión";
-              var fecha = new Date();
-              hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
-            //   console.log(hora);
-              addData(myChart, hora, 0);
-              datos.innerHTML = hora;
+                if (controlUltDesconexion == 0) {
+                    ultDesconexion.innerHTML = hora;
+                    controlUltDesconexion = 1;
+                    var fecha = new Date();
+                    var mes = fecha.getMonth() + 1;
+                    if (mes < 10) {
+                        mes = "0" + mes;
+                    }
+                    var dias = fecha.getDate();
+                    if (dias < 10) {
+                        dias = "0" + dias;
+                    }
+                    dia = dias + "-" + mes + "-" + fecha.getFullYear();
+                    numDesconexion++;
+                    firebase.database().ref("torre_1/desconexion/" + dia + "/" + numDesconexion).set(hora);
+                }
+                mostrarPing.innerHTML = "Sin Conexión";
+                var fecha = new Date();
+                var horas = fecha.getHours();
+                if (horas < 10) {
+                    horas = "0" + horas;
+                }
+                var minutos = fecha.getMinutes();
+                if (minutos < 10) {
+                    minutos = "0" + minutos;
+                }
+                var segundos = fecha.getSeconds();
+                if (segundos < 10) {
+                    segundos = "0" + segundos;
+                }
+                hora = horas + ":" + minutos + ":" + segundos;
+                addData(myChart, hora, 0);
+                datos.innerHTML = hora;
             }
-            if (control2 > 2) {
+            if (control2 > 3) {
                 if (controlUltDesconexion2 == 0) {
-                  ultDesconexion2.innerHTML = hora;
-                  controlUltDesconexion2 = 1;
-              }
+                    ultDesconexion2.innerHTML = hora;
+                    controlUltDesconexion2 = 1;
+                    var fecha = new Date();
+                    var mes = fecha.getMonth() + 1;
+                    if (mes < 10) {
+                        mes = "0" + mes;
+                    }
+                    var dias = fecha.getDate();
+                    if (dias < 10) {
+                        dias = "0" + dias;
+                    }
+                    dia = dias + "-" + mes + "-" + fecha.getFullYear();
+                    numDesconexion2++;
+                    firebase.database().ref("torre_2/desconexion/" + dia + "/" + numDesconexion).set(hora);
+                }
                 mostrarPing2.innerHTML = "Sin Conexión";
                 var fecha = new Date();
-                hora = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
-                
+                var horas = fecha.getHours();
+                if (horas < 10) {
+                    horas = "0" + horas;
+                }
+                var minutos = fecha.getMinutes();
+                if (minutos < 10) {
+                    minutos = "0" + minutos;
+                }
+                var segundos = fecha.getSeconds();
+                if (segundos < 10) {
+                    segundos = "0" + segundos;
+                }
+                hora = horas + ":" + minutos + ":" + segundos;
                 addData2(myChart2, hora, 0);
                 datos2.innerHTML = hora;
             }
@@ -132,8 +200,7 @@ ciclo = 0;
             datos2.innerHTML = hora;
             control++;
             control2++;
-            // console.log("control", control);
-        }
+    }
 
 
 var ctx = document.getElementById("myChart").getContext('2d');
