@@ -54,34 +54,44 @@ var config = {
 
   numDesconexion.on("value", function (snaptshot) {
       numDesconexion = snaptshot.val();
-      console.log(numDesconexion);
       ultDesconexion = firebase.database().ref().child("torre_1/desconexion/" + dia + "/" + numDesconexion);
       
       ultDesconexion.on("value", function (snaptshot) {
         ultDesconexion = snaptshot.val();
         desconexion.innerHTML = ultDesconexion;
     });
-
-
-
-
   });
 
   numReconexion.on("value", function (snaptshot) {
       numReconexion = snaptshot.val();
+      ultReconexion = firebase.database().ref().child("torre_1/reconexion/" + dia + "/" + numReconexion);
+
+      ultReconexion.on("value", function (snaptshot) {
+          ultReconexion = snaptshot.val();
+          reconexion.innerHTML = ultReconexion;
+      });
   });
 
   numDesconexion2.on("value", function (snaptshot) {
       numDesconexion2 = snaptshot.val();
+      ultDesconexion2 = firebase.database().ref().child("torre_2/desconexion/" + dia + "/" + numDesconexion2);
+
+      ultDesconexion2.on("value", function (snaptshot) {
+          ultDesconexion2 = snaptshot.val();
+          desconexion2.innerHTML = ultDesconexion2;
+      });
+
   });
 
   numReconexion2.on("value", function (snaptshot) {
       numReconexion2 = snaptshot.val();
+      ultReconexion2 = firebase.database().ref().child("torre_2/reconexion/" + dia + "/" + numReconexion2);
+
+      ultReconexion2.on("value", function (snaptshot) {
+          ultReconexion2 = snaptshot.val();
+          reconexion2.innerHTML = ultReconexion2;
+      });
   });
-
-
-  
-
 
 
 puntos = 0;
