@@ -10,8 +10,8 @@ var config = {
 
   var database = firebase.database();
   var hora;
-  var ultDesconexion = document.getElementById("ultDesconexion");
-  var ultDesconexion2 = document.getElementById("ultDesconexion2");
+  var desconexion = document.getElementById("ultDesconexion");
+  var desconexion2 = document.getElementById("ultDesconexion2");
   var reconexion = document.getElementById("reconexion");
   var reconexion2 = document.getElementById("reconexion2");
   var puntos;
@@ -54,6 +54,17 @@ var config = {
 
   numDesconexion.on("value", function (snaptshot) {
       numDesconexion = snaptshot.val();
+      console.log(numDesconexion);
+      ultDesconexion = firebase.database().ref().child("torre_1/desconexion/" + dia + "/" + numDesconexion);
+      
+      ultDesconexion.on("value", function (snaptshot) {
+        ultDesconexion = snaptshot.val();
+        desconexion.innerHTML = ultDesconexion;
+    });
+
+
+
+
   });
 
   numReconexion.on("value", function (snaptshot) {
@@ -67,6 +78,9 @@ var config = {
   numReconexion2.on("value", function (snaptshot) {
       numReconexion2 = snaptshot.val();
   });
+
+
+  
 
 
 
@@ -164,7 +178,7 @@ puntos2 = 0;
     function actualizaGrafico() {
             if (control > 3) { 
                 if (controlUltDesconexion == 0) {
-                    ultDesconexion.innerHTML = hora;
+                    desconexion.innerHTML = hora;
                     controlUltDesconexion = 1;
                     var fecha = new Date();
                     var mes = fecha.getMonth() + 1;
@@ -200,7 +214,7 @@ puntos2 = 0;
             }
             if (control2 > 3) {
                 if (controlUltDesconexion2 == 0) {
-                    ultDesconexion2.innerHTML = hora;
+                    desconexion2.innerHTML = hora;
                     controlUltDesconexion2 = 1;
                     var fecha = new Date();
                     var mes = fecha.getMonth() + 1;
