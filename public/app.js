@@ -22,17 +22,19 @@ var config = {
   var numReconexion;
   var numDesconexion2;
   var numReconexion2;
-  var ciclo;
   var controlUltDesconexion;
   var controlUltDesconexion2;
+  var dia;
+
   var mostrarPing = document.getElementById("mostrarPing");
   var datos = document.getElementById("datos");
   var mostrarPing2 = document.getElementById("mostrarPing2");
   var datos2 = document.getElementById("datos2");
-  var monitor;
-  var dia;
+
+
   var ping = firebase.database().ref().child("torre_1/dato");
   var ping2 = firebase.database().ref().child("torre_2/dato");
+
   var fecha = new Date();
   var mes = fecha.getMonth() + 1;
   if (mes < 10) {
@@ -43,8 +45,12 @@ var config = {
       dias = "0" + dias;
   }
   dia = dias + "-" + mes + "-" + fecha.getFullYear();
+
   numDesconexion = firebase.database().ref().child("torre_1/desconexion/" + dia + "/contador");
   numReconexion = firebase.database().ref().child("torre_1/reconexion/" + dia + "/contador");
+  numDesconexion2 = firebase.database().ref().child("torre_2/desconexion/" + dia + "/contador");
+  numReconexion2 = firebase.database().ref().child("torre_2/reconexion/" + dia + "/contador");
+
 
   numDesconexion.on("value", function (snaptshot) {
       numDesconexion = snaptshot.val();
@@ -54,12 +60,19 @@ var config = {
       numReconexion = snaptshot.val();
   });
 
-//numDesconexion = 0;
-//numReconexion = 0;
+  numDesconexion2.on("value", function (snaptshot) {
+      numDesconexion2 = snaptshot.val();
+  });
+
+  numReconexion2.on("value", function (snaptshot) {
+      numReconexion2 = snaptshot.val();
+  });
+
+
+
 puntos = 0;
 puntos2 = 0;
-monitor = 0;
-ciclo = 0;  
+ 
 
   ping.on("value", function (snaptshot) {
         control = 1;
@@ -123,6 +136,7 @@ ciclo = 0;
         if (controlUltDesconexion2 == 1){
                 reconexion2.innerHTML = hora;
                 numReconexion2++;
+                firebase.database().ref("torre_2/reconexion/" + dia + "/contador").set(numReconexion2);
                 var mes = fecha.getMonth() + 1;
                 if (mes < 10) {
                     mes = "0" + mes;
@@ -199,6 +213,7 @@ ciclo = 0;
                     }
                     dia = dias + "-" + mes + "-" + fecha.getFullYear();
                     numDesconexion2++;
+                    firebase.database().ref("torre_2/desconexion/" + dia + "/contador").set(numDesconexion2);
                     firebase.database().ref("torre_2/desconexion/" + dia + "/" + numDesconexion2).set(hora);
                 }
                 mostrarPing2.innerHTML = "Sin Conexión";
