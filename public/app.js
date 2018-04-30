@@ -14,6 +14,9 @@ var config = {
   var desconexion2 = document.getElementById("ultDesconexion2");
   var reconexion = document.getElementById("reconexion");
   var reconexion2 = document.getElementById("reconexion2");
+  var totalDesconexion = document.getElementById("totalDesconexion");
+  var totalDesconexion2 = document.getElementById("totalDesconexion2");
+
   var puntos;
   var puntos2;
   var control;
@@ -54,6 +57,7 @@ var config = {
 
   numDesconexion.on("value", function (snaptshot) {
       numDesconexion = snaptshot.val();
+      totalDesconexion.innerHTML = numDesconexion;
       ultDesconexion = firebase.database().ref().child("torre_1/desconexion/" + dia + "/" + numDesconexion);
       
       ultDesconexion.on("value", function (snaptshot) {
@@ -74,6 +78,7 @@ var config = {
 
   numDesconexion2.on("value", function (snaptshot) {
       numDesconexion2 = snaptshot.val();
+      totalDesconexion2.innerHTML = numDesconexion2;
       ultDesconexion2 = firebase.database().ref().child("torre_2/desconexion/" + dia + "/" + numDesconexion2);
 
       ultDesconexion2.on("value", function (snaptshot) {
