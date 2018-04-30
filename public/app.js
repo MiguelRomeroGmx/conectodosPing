@@ -121,6 +121,10 @@ puntos2 = 0;
         hora = horas + ":" + minutos + ":" + segundos;
         if (controlUltDesconexion == 1){
                 reconexion.innerHTML = hora;
+                numReconexion = firebase.database().ref().child("torre_1/reconexion/" + dia + "/contador");
+                numReconexion.on("value", function (snaptshot) {
+                    numReconexion = snaptshot.val();
+                });
                 numReconexion++;
                 firebase.database().ref("torre_1/reconexion/" + dia + "/contador").set(numReconexion);
                 var mes = fecha.getMonth() + 1;
@@ -128,6 +132,7 @@ puntos2 = 0;
                     mes = "0" + mes;
                 }
                 var dias = fecha.getDate();
+                // var dias = 15;
                 if (dias <10) {
                     dias = "0" + dias;
                 }
@@ -164,6 +169,10 @@ puntos2 = 0;
         hora = horas + ":" + minutos + ":" + segundos;
         if (controlUltDesconexion2 == 1){
                 reconexion2.innerHTML = hora;
+                numReconexion2 = firebase.database().ref().child("torre_2/reconexion/" + dia + "/contador");
+                numReconexion2.on("value", function (snaptshot) {
+                    numReconexion2 = snaptshot.val();
+                });
                 numReconexion2++;
                 firebase.database().ref("torre_2/reconexion/" + dia + "/contador").set(numReconexion2);
                 var mes = fecha.getMonth() + 1;
@@ -201,10 +210,15 @@ puntos2 = 0;
                         mes = "0" + mes;
                     }
                     var dias = fecha.getDate();
+                    // var dias = 15;
                     if (dias < 10) {
                         dias = "0" + dias;
                     }
                     dia = dias + "-" + mes + "-" + fecha.getFullYear();
+                    numDesconexion = firebase.database().ref().child("torre_1/desconexion/" + dia + "/contador");
+                    numDesconexion.on("value", function (snaptshot) {
+                        numDesconexion = snaptshot.val();
+                    });
                     numDesconexion++;
                     firebase.database().ref("torre_1/desconexion/" + dia + "/contador").set(numDesconexion);
                     firebase.database().ref("torre_1/desconexion/" + dia + "/" + numDesconexion).set(hora);
@@ -237,10 +251,15 @@ puntos2 = 0;
                         mes = "0" + mes;
                     }
                     var dias = fecha.getDate();
+                    // var dias = 31;
                     if (dias < 10) {
                         dias = "0" + dias;
                     }
                     dia = dias + "-" + mes + "-" + fecha.getFullYear();
+                    numDesconexion2 = firebase.database().ref().child("torre_1/desconexion/" + dia + "/contador");
+                    numDesconexion2.on("value", function (snaptshot) {
+                        numDesconexion2 = snaptshot.val();
+                    });
                     numDesconexion2++;
                     firebase.database().ref("torre_2/desconexion/" + dia + "/contador").set(numDesconexion2);
                     firebase.database().ref("torre_2/desconexion/" + dia + "/" + numDesconexion2).set(hora);
