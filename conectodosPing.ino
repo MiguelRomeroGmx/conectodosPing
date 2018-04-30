@@ -6,8 +6,8 @@
 
 #define FIREBASE_HOST "conectodosping.firebaseio.com"
 #define FIREBASE_AUTH "Kwrq38oCDoe6V14UBe664euUv3lpMPbgnnVzFltj"//  secreto de la base de satos
-#define WIFI_SSID "ROMERO"//modificar credenciales
-#define WIFI_PASSWORD "romero2016"
+#define WIFI_SSID "Tenda_2BB080"//modificar credenciales
+#define WIFI_PASSWORD "redcomalcalcob"
 
 
 void setup()
