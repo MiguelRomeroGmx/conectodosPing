@@ -26,10 +26,10 @@ void setup()
 void loop()
 {
 	Firebase.setInt("torre_1/dato", 1);
-	Firebase.setInt("torre_2/dato", 1);
+	// Firebase.setInt("torre_2/dato", 1);
 	delay(500);
 	Firebase.setInt("torre_1/dato", 0);
-	Firebase.setInt("torre_2/dato", 0);
+	// Firebase.setInt("torre_2/dato", 0);
 	delay(500);
 
 

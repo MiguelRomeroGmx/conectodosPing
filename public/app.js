@@ -191,7 +191,7 @@ puntos2 = 0;
 
     
     function actualizaGrafico() {
-            if (control > 3) { 
+            if (control > 5) { 
                 if (controlUltDesconexion == 0) {
                     desconexion.innerHTML = hora;
                     controlUltDesconexion = 1;
@@ -227,7 +227,7 @@ puntos2 = 0;
                 addData(myChart, hora, 0);
                 datos.innerHTML = hora;
             }
-            if (control2 > 3) {
+            if (control2 > 5) {
                 if (controlUltDesconexion2 == 0) {
                     desconexion2.innerHTML = hora;
                     controlUltDesconexion2 = 1;
@@ -267,6 +267,8 @@ puntos2 = 0;
             datos2.innerHTML = hora;
             control++;
             control2++;
+            console.log("control= " + control);
+            
     }
 
 
@@ -301,7 +303,7 @@ var myChart = new Chart(ctx, {
     options: {
         title: {
             display: true,
-            text: 'Antena 1 - Fibra Óptica Paraíso'
+            text: 'Torre 1 - Fibra Óptica Paraíso'
         },
         scales: {
             yAxes: [{
@@ -345,7 +347,7 @@ var myChart2 = new Chart(ctx, {
     options: {
         title: {
             display: true,
-            text: 'Antena 2 - Fibra Óptica Comalcalco'
+            text: 'Torre 2 - Fibra Óptica Comalcalco'
         },
         scales: {
             yAxes: [{
