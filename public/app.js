@@ -290,6 +290,7 @@ puntos2 = 0;
             
     }
 
+    // graficos
 
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
