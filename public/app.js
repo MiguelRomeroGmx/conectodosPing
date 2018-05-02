@@ -142,7 +142,8 @@ puntos2 = 0;
             }
         controlUltDesconexion = 0;
         ping = snaptshot.val();
-        firebase.database().ref("torre_1/antena").set("En Linea");
+        var antena = "En Linea";
+        firebase.database().ref("torre_1/antena").set(antena);
         mostrarPing.innerHTML = "En Línea";
         if (ping == 1) {
             addData(myChart, hora, 1);
@@ -190,7 +191,8 @@ puntos2 = 0;
             }
         controlUltDesconexion2 = 0;
         ping2 = snaptshot.val();
-        firebase.database().ref("torre_2/antena").set("En Linea");
+        var antena = "En Linea";
+        firebase.database().ref("torre_2/antena").set(antena);
         mostrarPing2.innerHTML = "En Línea";
         if (ping2 == 1) {
             addData2(myChart2, hora, 1);
