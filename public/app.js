@@ -374,7 +374,7 @@ puntos3 = 0;
                 addData2(myChart2, hora, 0);
                 datos2.innerHTML = hora;
             }
-
+// grafica 3
             if (control3 > 5) {
                 if (controlUltDesconexion3 == 0) {
                     desconexion3.innerHTML = hora;
