@@ -395,7 +395,7 @@ puntos3 = 0;
                         ctrlDesconexion3 = snaptshot.val();
                     });
                     ctrlDesconexion3++;
-                    firebase.database().ref("torre_3/desconexion/" + dia + "/contador").set(ctrlDesconexion23);
+                    firebase.database().ref("torre_3/desconexion/" + dia + "/contador").set(ctrlDesconexion3);
                     firebase.database().ref("torre_3/desconexion/" + dia + "/" + ctrlDesconexion3).set(hora);
                 }
                 firebase.database().ref("torre_3/antena").set("Sin Conexion");
