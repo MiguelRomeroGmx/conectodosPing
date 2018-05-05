@@ -25,6 +25,7 @@ void setup()
 
 void loop()
 {
+	// pendiente funcion con millis()
 	Firebase.setInt("torre_1/dato", 1);
 	// Firebase.setInt("torre_2/dato", 1);
 	delay(500);
