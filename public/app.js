@@ -60,6 +60,8 @@ var config = {
   }
   dia = dias + "-" + mes + "-" + fecha.getFullYear();
 
+//   obteniendo desconexiones y reconexiones
+
   numDesconexion = firebase.database().ref().child("torre_1/desconexion/" + dia + "/contador");
   numReconexion = firebase.database().ref().child("torre_1/reconexion/" + dia + "/contador");
   numDesconexion2 = firebase.database().ref().child("torre_2/desconexion/" + dia + "/contador");
@@ -138,6 +140,7 @@ puntos = 0;
 puntos2 = 0;
 puntos3 = 0;
 
+// ping antenas
   ping.on("value", function (snaptshot) {
         control = 1;
         var fecha = new Date();
@@ -288,7 +291,7 @@ puntos3 = 0;
         }
     });
 
-    
+    // Actualizacion grafico cada segundo
     function actualizaGrafico() {
             if (control > 5) { 
                 if (controlUltDesconexion == 0) {
