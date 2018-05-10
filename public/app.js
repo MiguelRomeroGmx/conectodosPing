@@ -293,7 +293,7 @@ puntos3 = 0;
 
     // Actualizacion grafico cada segundo
     function actualizaGrafico() {
-            if (control > 5) { 
+            if (control > 7) { 
                 if (controlUltDesconexion == 0) {
                     desconexion.innerHTML = hora;
                     controlUltDesconexion = 1;
@@ -335,7 +335,7 @@ puntos3 = 0;
                 addData(myChart, hora, 0);
                 datos.innerHTML = hora;
             }
-            if (control2 > 5) {
+            if (control2 > 7) {
                 if (controlUltDesconexion2 == 0) {
                     desconexion2.innerHTML = hora;
                     controlUltDesconexion2 = 1;
@@ -378,7 +378,7 @@ puntos3 = 0;
                 datos2.innerHTML = hora;
             }
 // grafica 3
-            if (control3 > 5) {
+            if (control3 > 7) {
                 if (controlUltDesconexion3 == 0) {
                     desconexion3.innerHTML = hora;
                     controlUltDesconexion3 = 1;
