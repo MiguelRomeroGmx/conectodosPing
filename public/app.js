@@ -377,7 +377,7 @@ puntos3 = 0;
                 addData2(myChart2, hora, 0);
                 datos2.innerHTML = hora;
             }
-// grafica 3
+// grafica 3 aumento a 7 el tiempo de desconexion
             if (control3 > 7) {
                 if (controlUltDesconexion3 == 0) {
                     desconexion3.innerHTML = hora;
